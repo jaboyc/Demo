@@ -1,45 +1,44 @@
-import 'package:assessment/application/weather/weather_bloc.dart';
-import 'package:assessment/application/weather/weather_event.dart';
-import 'package:assessment/application/weather/weather_state.dart';
-import 'package:assessment/data/weather/mock_weather_repository.dart';
-import 'package:assessment/domain/weather/weather_repository.dart';
+import 'package:assessment/application/ship/ship_bloc.dart';
+import 'package:assessment/application/ship/ship_event.dart';
+import 'package:assessment/application/ship/ship_state.dart';
+import 'package:assessment/domain/ship/ship_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class WeatherPage extends StatelessWidget {
-  const WeatherPage({super.key});
+class ShipPage extends StatelessWidget {
+  const ShipPage({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Weather'),
+        title: const Text('Ship'),
       ),
-      body: BlocProvider<WeatherBloc>(
-        create: (_) => WeatherBloc(repository: context.read<WeatherRepository>())..add(WeatherLoadEvent()),
-        child: BlocBuilder<WeatherBloc, WeatherState>(
+      body: BlocProvider<ShipBloc>(
+        create: (_) => ShipBloc(repository: context.read<ShipRepository>())..add(ShipLoadEvent()),
+        child: BlocBuilder<ShipBloc, ShipState>(
           builder: (context, state) {
-            if (state is WeatherLoadingState) {
+            if (state is ShipLoadingState) {
               return const Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (state is WeatherLoadedState) {
+            } else if (state is ShipLoadedState) {
               return Center(
                 child: Column(
                   children: [
-                    const Text('Weather'),
+                    const Text('Ship'),
                     Text(
-                      state.weather.degrees.toString(),
+                      state.ship.toString(),
                       style: Theme.of(context).textTheme.displayMedium,
                     ),
                   ],
                 ),
               );
-            } else if (state is WeatherErrorState) {
+            } else if (state is ShipErrorState) {
               return Center(
                 child: Column(
                   children: [
-                    const Text('Weather'),
+                    const Text('Ship'),
                     Text(
                       state.error.toString(),
                       style: Theme.of(context).textTheme.displayMedium!.copyWith(

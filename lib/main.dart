@@ -1,6 +1,6 @@
-import 'package:assessment/data/weather/mock_weather_repository.dart';
-import 'package:assessment/domain/weather/weather_repository.dart';
-import 'package:assessment/presentation/weather_page.dart';
+import 'package:assessment/data/ship/mock_ship_repository.dart';
+import 'package:assessment/domain/ship/ship_repository.dart';
+import 'package:assessment/presentation/ship_page.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -13,14 +13,14 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return RepositoryProvider<WeatherRepository>(
-      create: (_) => MockWeatherRepository(),
+    return RepositoryProvider<ShipRepository>(
+      create: (_) => MockShipRepository(),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: const WeatherPage(),
+        home: const ShipPage(),
       ),
     );
   }
