@@ -2,6 +2,8 @@ import 'package:assessment/domain/ship/ship.dart';
 
 abstract class ShipState {}
 
+class ShipInitialState implements ShipState {}
+
 class ShipLoadingState implements ShipState {}
 
 class ShipLoadedState implements ShipState {

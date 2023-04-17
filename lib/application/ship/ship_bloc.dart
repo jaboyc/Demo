@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class ShipBloc extends Bloc<ShipEvent, ShipState> {
   final ShipRepository repository;
 
-  ShipBloc({required this.repository}) : super(ShipLoadingState()) {
+  ShipBloc({required this.repository}) : super(ShipInitialState()) {
     on<ShipLoadEvent>((event, emit) async {
       emit(ShipLoadingState());
       try {
-        final ship = await repository.getShip();
+        final ship = await repository.getShip(event.name);
         emit(ShipLoadedState(ship: ship));
       } catch (e) {
         emit(ShipErrorState(error: e));
