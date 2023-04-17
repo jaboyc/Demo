@@ -1,5 +1,5 @@
 import 'package:assessment/data/ship/api_ship_repository.dart';
-import 'package:assessment/data/ship/mock_ship_repository.dart';
+import 'package:assessment/data/ship/cache_ship_repository.dart';
 import 'package:assessment/domain/ship/ship_repository.dart';
 import 'package:assessment/presentation/ship_page.dart';
 import 'package:flutter/material.dart';
@@ -15,7 +15,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RepositoryProvider<ShipRepository>(
-      create: (_) => ApiShipRepository(),
+      create: (_) => CacheShipRepository(
+        sourceRepository: ApiShipRepository(),
+      ),
       child: MaterialApp(
         title: 'Flutter Demo',
         theme: ThemeData(
